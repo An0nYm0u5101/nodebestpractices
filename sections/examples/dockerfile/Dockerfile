@@ -3,7 +3,7 @@
 # In the second stage, we start fresh and only copy necessary files. We also purge node_modules devDependencies.
 
 #### Build stage ####
-FROM node:14.8.0-alpine AS build
+FROM node:14.16.0-alpine AS build
 
 # Install system build dependencies (if needed) at the top ✅ See bullet point #8.8 about caching
 RUN apk add --update --no-cache bash make gcc g++ lcms2-dev libpng-dev autoconf automake
@@ -22,7 +22,7 @@ RUN npm run build
 
 #### Run-time stage ####
 # ✅ See bullet point #8.10 about smaller docker base images
-FROM node:14.8.0-alpine as app
+FROM node:14.16.0-alpine as app
 
 # Set non-root user and expose port 3000
 USER node
